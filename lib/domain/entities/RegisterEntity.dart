@@ -5,13 +5,13 @@
 class RegisterEntity {
   RegisterEntity({
     this.message,
-    this.statusMsg,
+
     this.user,
     this.token,
   });
 
   String? message;
-  String? statusMsg;
+
   UserEntity? user;
   String? token;
 }

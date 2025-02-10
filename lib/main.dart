@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   configureDependencies();
+
   runApp(const MyApp());
 }
 

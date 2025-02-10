@@ -13,6 +13,6 @@ class AuthRepositoryImpl extends AuthRepository{
 
   @override
   Future<Either<Failures, RegisterEntity>> register(String name, String phone, String email, String password) {
-  return authRemoteDatasource.register(name, phone, email, password);
+  return authRemoteDatasource.register( name,  phone, email,  password);
   }
 }
