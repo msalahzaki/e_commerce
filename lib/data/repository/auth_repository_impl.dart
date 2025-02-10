@@ -3,7 +3,9 @@ import 'package:e_commerce/core/failures.dart';
 import 'package:e_commerce/domain/entities/RegisterEntity.dart';
 import 'package:e_commerce/domain/repositories/dataSource/auth_remote_dataSource.dart';
 import 'package:e_commerce/domain/repositories/repository/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as : AuthRepository)
 class AuthRepositoryImpl extends AuthRepository{
   AuthRemoteDatasource authRemoteDatasource ;
 

@@ -1,3 +1,5 @@
+import 'package:e_commerce/core/di/di.dart';
+import 'package:e_commerce/ui/auth/register/cubit/register_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,11 +9,7 @@ import '../../../core/utils/app_styles.dart';
 
 class Register extends StatelessWidget {
    Register({super.key});
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final rePasswordController = TextEditingController();
-  final phoneController = TextEditingController();
+final RegisterViewmodel viewmodel =getIt<RegisterViewmodel>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +40,7 @@ class Register extends StatelessWidget {
                   height:15.h,
                 ),
                 TextFormField(
+                  controller: viewmodel.nameController,
                   decoration: const InputDecoration(hintText: "enter Your Full Name"),
                 ),
                 SizedBox(
@@ -56,6 +55,7 @@ class Register extends StatelessWidget {
                   height: 15.h,
                 ),
                 TextFormField(
+                  controller: viewmodel.phoneController,
                   decoration: const InputDecoration(hintText: "enter Your Mobile Number"),
                 ),
                 SizedBox(
@@ -70,7 +70,8 @@ class Register extends StatelessWidget {
                   height: 15.h,
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(hintText: "enter user name"),
+                  controller: viewmodel.emailController,
+                  decoration: const InputDecoration(hintText: "enter Email"),
                 ),
                 SizedBox(
                   height: 30.h,
@@ -83,6 +84,7 @@ class Register extends StatelessWidget {
                   height: 15.h,
                 ),
                 TextFormField(
+                  controller: viewmodel.passwordController,
                   decoration: const InputDecoration(hintText: "enter Your Password",suffixIcon: Icon(Icons.visibility)),
                 ),
               
