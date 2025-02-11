@@ -31,9 +31,9 @@ final RegisterViewmodel viewmodel =getIt<RegisterViewmodel>();
                 if(state is RegisterErrorState){
                    CustomDailog.hideLoading(context);
                   return CustomDailog.showAwesomeErrorMessageDialog(context: context, massage: state.errorMassage);
-                }  if(state is RegisterLoadingState){
+                }  if(state is RegisterSuccessState){
                   CustomDailog.hideLoading(context);
-                  return CustomDailog.showAwesomeErrorMessageDialog(context: context, massage: "Register Successfull");
+                  return CustomDailog.showAwesomeSuccessMessageDialog(context: context, massage: "Register Successfull");
                 }
             },
               child: Column(
