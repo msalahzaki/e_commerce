@@ -29,6 +29,14 @@ class AppTheme {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ))),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColor.primary,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: AppColor.primary,
+      unselectedItemColor: AppColor.white,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+    )
   );
 
 

@@ -2,6 +2,7 @@ import 'package:e_commerce/core/MyBlocObserver.dart';
 import 'package:e_commerce/core/di/di.dart';
 import 'package:e_commerce/core/utils/app_theme.dart';
 import 'package:e_commerce/home.dart';
+import 'package:e_commerce/ui/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: AppTheme.lightTheme,
           themeMode: ThemeMode.light,
-          home: const Home(),
+          home:  LoginScreen(),
         );
       },
     );

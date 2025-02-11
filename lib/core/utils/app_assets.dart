@@ -2,6 +2,7 @@ class AppAssets {
   /// images
 
   static const String routeLogo = "assets/images/logo.png";
+  static const String route = "assets/images/route.png";
   static const String splashScreen = "assets/images/splash_screen.png";
   static const String categoryCardImage = "assets/images/category_card_image.png";
 
