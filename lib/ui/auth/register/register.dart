@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/di/di.dart';
 import 'package:e_commerce/core/utils/custom_dailog.dart';
+import 'package:e_commerce/core/utils/validator.dart';
 import 'package:e_commerce/ui/auth/register/cubit/register_states.dart';
 import 'package:e_commerce/ui/auth/register/cubit/register_viewModel.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,7 @@ final RegisterViewmodel viewmodel =getIt<RegisterViewmodel>();
                     height:15.h,
                   ),
                   TextFormField(
+                    validator: Validator.validateName,
                     controller: viewmodel.nameController,
                     decoration: const InputDecoration(hintText: "enter Your Full Name"),
                   ),
@@ -73,6 +75,7 @@ final RegisterViewmodel viewmodel =getIt<RegisterViewmodel>();
                     height: 15.h,
                   ),
                   TextFormField(
+                    validator: Validator.validatePhone,
                     controller: viewmodel.phoneController,
                     decoration: const InputDecoration(hintText: "enter Your Mobile Number"),
                   ),
@@ -88,6 +91,7 @@ final RegisterViewmodel viewmodel =getIt<RegisterViewmodel>();
                     height: 15.h,
                   ),
                   TextFormField(
+                    validator: Validator.validateEmail,
                     controller: viewmodel.emailController,
                     decoration: const InputDecoration(hintText: "enter Email"),
                   ),
@@ -102,6 +106,7 @@ final RegisterViewmodel viewmodel =getIt<RegisterViewmodel>();
                     height: 15.h,
                   ),
                   TextFormField(
+                    validator: Validator.validatePassword,
                     controller: viewmodel.passwordController,
                     decoration: const InputDecoration(hintText: "enter Your Password",suffixIcon: Icon(Icons.visibility)),
                   ),

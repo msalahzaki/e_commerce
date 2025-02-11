@@ -6,7 +6,7 @@ import 'package:e_commerce/core/failures.dart';
 import 'package:e_commerce/data/model/LoginResponse.dart';
 import 'package:e_commerce/data/model/RegisterDataModel.dart';
 import 'package:e_commerce/domain/entities/LoginEntity.dart';
-import 'package:e_commerce/domain/entities/RegisterEntity.dart';
+
 import 'package:e_commerce/domain/repositories/dataSource/auth_remote_dataSource.dart';
 import 'package:injectable/injectable.dart';
 
@@ -60,11 +60,11 @@ class AuthRemoteDatasourceImpl extends AuthRemoteDatasource {
     if (connectivityResult.contains(ConnectivityResult.wifi) ||
     connectivityResult.contains(ConnectivityResult.mobile)) {
     var response = await apiManger
-        .postData(endpoint: EndPoints.registerEndpoint, body: {
+        .postData(endpoint: EndPoints.loginEndpoint, body: {
       "email":email,
       "password":password
     });
-
+print(response!.data);
     LoginResponse loginResponse =
     LoginResponse.fromJson(response!.data);
 

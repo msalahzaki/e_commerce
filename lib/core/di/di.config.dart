@@ -17,7 +17,9 @@ import '../../data/repository/auth_repository_impl.dart' as _i581;
 import '../../domain/repositories/dataSource/auth_remote_dataSource.dart'
     as _i102;
 import '../../domain/repositories/repository/auth_repository.dart' as _i648;
+import '../../domain/usecases/login_useCase.dart' as _i839;
 import '../../domain/usecases/register_useCase.dart' as _i216;
+import '../../ui/auth/login/cubit/login_viewModel.dart' as _i999;
 import '../../ui/auth/register/cubit/register_viewModel.dart' as _i1056;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -38,6 +40,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i581.AuthRepositoryImpl(gh<_i102.AuthRemoteDatasource>()));
     gh.factory<_i216.RegisterUseCase>(
         () => _i216.RegisterUseCase(gh<_i648.AuthRepository>()));
+    gh.factory<_i839.LoginUseCase>(
+        () => _i839.LoginUseCase(gh<_i648.AuthRepository>()));
+    gh.factory<_i999.LoginViewmodel>(
+        () => _i999.LoginViewmodel(gh<_i839.LoginUseCase>()));
     gh.factory<_i1056.RegisterViewmodel>(
         () => _i1056.RegisterViewmodel(gh<_i216.RegisterUseCase>()));
     return this;

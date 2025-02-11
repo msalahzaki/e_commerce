@@ -2,12 +2,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/domain/entities/LoginEntity.dart';
 import 'package:e_commerce/domain/repositories/repository/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../core/failures.dart';
-import '../entities/RegisterEntity.dart';
 
+
+@injectable
 class LoginUseCase {
-AuthRepository authRepository ;
+  AuthRepository authRepository;
+
 
 LoginUseCase(this.authRepository);
 
