@@ -1,13 +1,17 @@
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
+import 'package:e_commerce/core/di/di.dart';
 import 'package:e_commerce/core/utils/app_assets.dart';
+import 'package:e_commerce/ui/home_tab/cubit/home_tab_states.dart';
+import 'package:e_commerce/ui/home_tab/cubit/home_tab_viewModel.dart';
 import 'package:e_commerce/ui/home_tab/widget/categories_widget.dart';
 import 'package:e_commerce/ui/home_tab/widget/home_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
-
+   HomeTab({super.key});
+final HomeTabViewmodel viewmodel = getIt<HomeTabViewmodel>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +71,21 @@ class HomeTab extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                SizedBox(height: 250.h, child: CategoriesWidget()),
+                BlocBuilder<HomeTabViewmodel,HomeTabStates>(
+                    bloc: viewmodel..getAllCategories(),
+                    builder: (context, state) {
+                      if(state is CategoriesLoadingState){
+                        return CircularProgressIndicator();
+                      }else if (state is CategoriesErrorState){
+                        return Text(state.errorMassage);
+                      }
+                      else{
+                        return  SizedBox(height: 250.h, child: CategoriesWidget(category: viewmodel.categories,));
+                      }
+                    },
+                ),
+
+
                 SizedBox(
                   height: 20.h,
                 ),
@@ -80,7 +98,7 @@ class HomeTab extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 200.h,
-                    child: HomeProductWidget(imagePath: "https://ecommerce.routemisr.com/Route-Academy-products/1680403397485-4.jpeg"))
+                    child: HomeProductWidget(imagePath: "",))
               ],
             ),
           ),

@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentIndex = 0;
   List<Widget> tabs = [
-    const HomeTab(),
+     HomeTab(),
     const CategoriesTab(),
     const FavoriteTab(),
     const ProfileTab(),
