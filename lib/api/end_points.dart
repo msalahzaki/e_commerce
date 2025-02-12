@@ -6,6 +6,7 @@ class EndPoints {
 
 
   static const String getAllCategories = "/api/v1/categories";
+  static const String getALLProducts = "/api/v1/products";
 
 
 

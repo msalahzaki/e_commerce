@@ -14,9 +14,10 @@ class HomeProductWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          clipBehavior: Clip.antiAlias,
+          clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColor.darkBlue,width: 2)
 
           ),
           child: CachedNetworkImage(
@@ -31,15 +32,15 @@ class HomeProductWidget extends StatelessWidget {
                 const Center(child: Icon(Icons.error)),
           ),
         ),
-        Container(
+        Container(clipBehavior: Clip.hardEdge,
           margin: const EdgeInsets.all(10),
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           decoration: BoxDecoration(
               color: AppColor.white,
               borderRadius: BorderRadius.circular(50)),
           child:
-                 const ImageIcon(
-                  AssetImage(AppAssets.iconWithList),
+                  ImageIcon(
+                  const AssetImage(AppAssets.iconWithList),color: AppColor.darkBlue,
 
 
               )

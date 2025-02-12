@@ -15,16 +15,24 @@ import '../../api/api_manger.dart' as _i254;
 import '../../data/data_sources/auth_remote_dataSource_impl.dart' as _i482;
 import '../../data/data_sources/GetAllCategories_remote_dataSource_impl.dart'
     as _i559;
+import '../../data/data_sources/GetAllProducts_remote_dataSource_impl.dart'
+    as _i651;
 import '../../data/repository/auth_repository_impl.dart' as _i581;
 import '../../data/repository/getAllCategories_repository_impl.dart' as _i338;
+import '../../data/repository/getAllProducts_repository_impl.dart' as _i634;
 import '../../domain/repositories/dataSource/auth_remote_dataSource.dart'
     as _i102;
 import '../../domain/repositories/dataSource/getAllCategories_remote_dataSource.dart'
     as _i921;
+import '../../domain/repositories/dataSource/getAllProduct_remote_dataSource.dart'
+    as _i989;
 import '../../domain/repositories/repository/auth_repository.dart' as _i648;
 import '../../domain/repositories/repository/getAllCategories_repository.dart'
     as _i732;
+import '../../domain/repositories/repository/getAllProduct_repository.dart'
+    as _i135;
 import '../../domain/usecases/getAllCategories_useCase.dart' as _i470;
+import '../../domain/usecases/getAllProducts_useCase.dart' as _i507;
 import '../../domain/usecases/login_useCase.dart' as _i839;
 import '../../domain/usecases/register_useCase.dart' as _i216;
 import '../../ui/auth/login/cubit/login_viewModel.dart' as _i999;
@@ -43,8 +51,15 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i254.ApiManger>(() => _i254.ApiManger());
+    gh.factory<_i989.GetAllProductRemoteDatasource>(
+        () => _i651.GetAllProductsRemoteDatasourceImpl(gh<_i254.ApiManger>()));
     gh.factory<_i921.GetAllCategoriesRemoteDatasource>(() =>
         _i559.GetAllCategoriesRemoteDatasourceImpl(gh<_i254.ApiManger>()));
+    gh.factory<_i507.GetAllProductsUseCase>(() =>
+        _i507.GetAllProductsUseCase(gh<_i989.GetAllProductRemoteDatasource>()));
+    gh.factory<_i135.GetAllProductRepository>(() =>
+        _i634.GetAllProductsRepositoryImpl(
+            gh<_i989.GetAllProductRemoteDatasource>()));
     gh.factory<_i102.AuthRemoteDatasource>(
         () => _i482.AuthRemoteDatasourceImpl(gh<_i254.ApiManger>()));
     gh.factory<_i732.GetAllCategoriesRepository>(() =>
@@ -60,10 +75,12 @@ extension GetItInjectableX on _i174.GetIt {
         _i470.GetAllCategoriesUseCase(gh<_i732.GetAllCategoriesRepository>()));
     gh.factory<_i999.LoginViewmodel>(
         () => _i999.LoginViewmodel(gh<_i839.LoginUseCase>()));
+    gh.factory<_i53.HomeTabViewmodel>(() => _i53.HomeTabViewmodel(
+          gh<_i470.GetAllCategoriesUseCase>(),
+          gh<_i507.GetAllProductsUseCase>(),
+        ));
     gh.factory<_i1056.RegisterViewmodel>(
         () => _i1056.RegisterViewmodel(gh<_i216.RegisterUseCase>()));
-    gh.factory<_i53.HomeTabViewmodel>(
-        () => _i53.HomeTabViewmodel(gh<_i470.GetAllCategoriesUseCase>()));
     return this;
   }
 }
