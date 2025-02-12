@@ -22,13 +22,11 @@ final List<CategoryEntity> category;
             ClipRRect(
               borderRadius: BorderRadius.circular(100.r),
               child: Container(
-                height: 100.h,
+                height: 90.h,
                 width: 100.w,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
+
                 child: CachedNetworkImage(
-        fit: BoxFit.cover,
+        fit: BoxFit.fitHeight,
         imageUrl: category[index].image ??"",
         placeholder: (context, url) =>  Center(
         child: CircularProgressIndicator(

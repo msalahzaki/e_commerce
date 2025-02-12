@@ -100,7 +100,7 @@ class HomeTab extends StatelessWidget {
                            Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("    ${viewmodel.randomCategoryEntity.name??""}",style: AppStyles.bold20primary,),
+                              Text("    ${viewmodel.randomCategoryEntity.name??""}",style: AppStyles.bold16primary,),
                               Text("view all         "),
                             ],
                           ),

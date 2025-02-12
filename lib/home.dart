@@ -30,8 +30,7 @@ class _HomeState extends State<Home> {
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.1,
-          child: BottomNavigationBar(
+            child: BottomNavigationBar(
             currentIndex: currentIndex,
             onTap: (value) => changeSelectedIndex(value),
             items: [

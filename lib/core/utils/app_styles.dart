@@ -10,6 +10,7 @@ class AppStyles {
   static TextStyle normal16primary = GoogleFonts.roboto(color: AppColor.primary, fontSize: 16, fontWeight: FontWeight.w500);
   static TextStyle normal20primary = GoogleFonts.roboto(color: AppColor.primary, fontSize: 20, fontWeight: FontWeight.w500);
 
+  static TextStyle bold16primary = GoogleFonts.roboto(color: AppColor.primary, fontSize: 16, fontWeight: FontWeight.w800);
   static TextStyle bold14primary = GoogleFonts.roboto(color: AppColor.primary, fontSize: 14, fontWeight: FontWeight.w800);
   static TextStyle bold20primary = GoogleFonts.roboto(color: AppColor.primary, fontSize: 20, fontWeight: FontWeight.w800);
 
