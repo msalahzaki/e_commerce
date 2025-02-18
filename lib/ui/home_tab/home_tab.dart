@@ -6,6 +6,7 @@ import 'package:e_commerce/ui/home_tab/cubit/home_tab_states.dart';
 import 'package:e_commerce/ui/home_tab/cubit/home_tab_viewModel.dart';
 import 'package:e_commerce/ui/home_tab/widget/categories_widget.dart';
 import 'package:e_commerce/ui/home_tab/widget/home_product_widget.dart';
+import 'package:e_commerce/ui/home_tab/widget/search_cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -23,25 +25,7 @@ class HomeTab extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(AppAssets.route),
-                SizedBox(
-                  height: 8.h,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                            prefixIcon: Image.asset(AppAssets.searchIcon),
-                            hintText: "what do you search for?"),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15.w,
-                    ),
-                    Image.asset(AppAssets.shoppingCart),
-                  ],
-                ),
+                SearchCartWidget(),
                 SizedBox(
                   height: 20.h,
                 ),
@@ -112,7 +96,7 @@ class HomeTab extends StatelessWidget {
                                 scrollDirection: Axis.horizontal
                                 ,itemBuilder: (context, index) {
                                   return HomeProductWidget(
-                                    imagePath: viewmodel.allProduct[index].images![0],
+                                    imagePath: viewmodel.allProduct[index].imageCover!,
                                   );
                                 }
 

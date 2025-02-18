@@ -14,38 +14,39 @@ class HomeProductWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColor.darkBlue,width: 2)
-
+            borderRadius: BorderRadius.circular(22), // Slightly larger to match clip
+            border: Border.all(color: AppColor.darkBlue, width: 2),
           ),
-          child: CachedNetworkImage(
-            fit: BoxFit.cover,
-            imageUrl: imagePath,
-            placeholder: (context, url) =>  Center(
-              child: CircularProgressIndicator(
-                color: AppColor.grey,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20), // Must match to clip properly
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: imagePath.isNotEmpty ? imagePath : 'https://via.placeholder.com/150',
+              placeholder: (context, url) => Center(
+                child: CircularProgressIndicator(color: AppColor.grey),
               ),
+              errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
             ),
-            errorWidget: (context, url, error) =>
-                const Center(child: Icon(Icons.error)),
           ),
         ),
-        Container(clipBehavior: Clip.hardEdge,
-          margin: const EdgeInsets.all(10),
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          decoration: BoxDecoration(
-              color: AppColor.white,
-              borderRadius: BorderRadius.circular(50)),
-          child:
-                  ImageIcon(
-                  const AssetImage(AppAssets.iconWithList),color: AppColor.darkBlue,
 
 
-              )
+        Positioned(right: 8,top: 4,
+          child: Container(clipBehavior: Clip.hardEdge,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            decoration: BoxDecoration(
+                color: AppColor.white,
+                borderRadius: BorderRadius.circular(50)),
+            child:
+                    ImageIcon(
+                    const AssetImage(AppAssets.iconWithList),color: AppColor.darkBlue,
 
 
+                )
+
+
+          ),
         ),
       ],
     );

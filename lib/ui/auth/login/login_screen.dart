@@ -34,7 +34,7 @@ final LoginViewmodel loginViewmodel = getIt<LoginViewmodel>();
                 return CustomDailog.showAwesomeErrorMessageDialog(context: context, massage: state.errorMassage);
               }  if(state is LoginSuccessState){
                 CustomDailog.hideLoading(context);
-                return CustomDailog.showAwesomeSuccessMessageDialog(context: context, massage: "Register Successfull",okFunction: (){
+                return CustomDailog.showAwesomeSuccessMessageDialog(context: context, massage: "Login Successfully",okFunction: (){
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home(),));
                 });
               }
