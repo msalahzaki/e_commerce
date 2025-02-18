@@ -25,7 +25,7 @@ class HomeTab extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchCartWidget(),
+                const SearchCartWidget(),
                 SizedBox(
                   height: 20.h,
                 ),
@@ -60,7 +60,7 @@ class HomeTab extends StatelessWidget {
                   bloc: viewmodel..getAllCategories(),
                   builder: (context, state) {
                     if (state is CategoriesLoadingState) {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     } else if (state is CategoriesErrorState) {
                       return Text(state.errorMassage);
                     } else {
@@ -85,7 +85,7 @@ class HomeTab extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("    ${viewmodel.randomCategoryEntity.name??""}",style: AppStyles.bold16primary,),
-                              Text("view all         "),
+                              const Text("view all       "),
                             ],
                           ),
                           SizedBox(
@@ -106,7 +106,7 @@ class HomeTab extends StatelessWidget {
                     } else if (state is ProductErrorState) {
                       return Text(state.errorMassage);
                     } else {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }
 
                   },

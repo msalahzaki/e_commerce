@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/utils/app_assets.dart';
+import 'package:e_commerce/ui/cart/cart_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +26,10 @@ class SearchCartWidget extends StatelessWidget {
             SizedBox(
               width: 15.w,
             ),
-            Image.asset(AppAssets.shoppingCart),
+            IconButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartDetails(),));
+            }, icon:Image.asset(AppAssets.shoppingCart) )
+            ,
           ],
         ),
       ],
