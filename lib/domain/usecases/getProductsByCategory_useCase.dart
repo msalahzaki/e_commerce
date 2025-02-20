@@ -8,13 +8,13 @@ import '../../core/failures.dart';
 
 
 @injectable
-class GetAllProductsUseCase {
+class GetProductsByCategoryUseCase {
   GetAllProductRemoteDatasource getAllProductRemoteDatasource;
 
 
-  GetAllProductsUseCase(this.getAllProductRemoteDatasource);
+  GetProductsByCategoryUseCase(this.getAllProductRemoteDatasource);
 
-  Future<Either<Failures, GetAllProductsEntity>> invoke ()async{
-    return await getAllProductRemoteDatasource.getAllProduct();
+  Future<Either<Failures, GetAllProductsEntity>> invoke (String categoryID)async{
+    return await getAllProductRemoteDatasource.getAllProductByCategory(categoryID);
   }
 }

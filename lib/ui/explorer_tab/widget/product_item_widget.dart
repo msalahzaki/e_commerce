@@ -1,13 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/utils/app_assets.dart';
 import 'package:e_commerce/core/utils/app_color.dart';
 import 'package:e_commerce/core/utils/app_styles.dart';
+import 'package:e_commerce/domain/entities/GetAllProductsEntity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItemWidget extends StatelessWidget {
-  const ProductItemWidget({super.key});
-
+   const ProductItemWidget( this.product, {super.key});
+final AllProductEntity product ;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +29,7 @@ class ProductItemWidget extends StatelessWidget {
                 ,clipBehavior: Clip.hardEdge
                 ,child: CachedNetworkImage(
                 fit: BoxFit.cover,height: 200.h,width: 200.w,
-                imageUrl: "https://ecommerce.routemisr.com/Route-Academy-products/1680403397402-cover.jpeg",
+                imageUrl: product.imageCover!,
                 placeholder: (context, url) => Center(
                   child: CircularProgressIndicator(
                     color: AppColor.darkGrey,
@@ -52,16 +54,16 @@ class ProductItemWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10.h,),
-          Text("NIke Air Jordan",style: AppStyles.normal16primary,),
+          AutoSizeText(product.title!,style: AppStyles.normal16primary,maxLines: 1,),
           Row(
             children: [
-              Text("EG 1200 ",style: AppStyles.normal16primary,),
-              Text("1500",style: AppStyles.normal14primary.copyWith(decoration: TextDecoration.lineThrough,),),
+              Text("EG ${product.price} ",style: AppStyles.normal16primary,),
+              Text("${product.price! + 300}",style: AppStyles.normal14primary.copyWith(decoration: TextDecoration.lineThrough,),),
             ],
           ),
           Row(
             children: [
-              Text("Review ( 4.6 ) ",style: AppStyles.normal16primary,),
+              Text("Review ${product.ratingsAverage} ",style: AppStyles.normal16primary,),
               Image.asset("assets/icons/ic_rate.png"),
               const Spacer(),
               Image.asset("assets/icons/iconAdd.png")

@@ -1,6 +1,6 @@
 import 'package:e_commerce/core/utils/app_assets.dart';
 import 'package:e_commerce/core/utils/app_color.dart';
-import 'package:e_commerce/ui/categories_tab/categories_tab.dart';
+import 'package:e_commerce/ui/explorer_tab/explore_tab.dart';
 import 'package:e_commerce/ui/favorite_tab/favorite_tab.dart';
 import 'package:e_commerce/ui/home_tab/home_tab.dart';
 import 'package:e_commerce/ui/profile_tab/profile_tab.dart';
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   int currentIndex = 0;
   List<Widget> tabs = [
      HomeTab(),
-    const CategoriesTab(),
+     CategoriesTab(),
     const FavoriteTab(),
     const ProfileTab(),
   ];

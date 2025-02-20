@@ -4,6 +4,7 @@ import 'package:e_commerce/domain/entities/AllCategoriesEntity.dart';
 import 'package:e_commerce/domain/entities/GetAllProductsEntity.dart';
 import 'package:e_commerce/domain/usecases/getAllCategories_useCase.dart';
 import 'package:e_commerce/domain/usecases/getAllProducts_useCase.dart';
+import 'package:e_commerce/domain/usecases/getProductsByCategory_useCase.dart';
 import 'package:e_commerce/ui/auth/login/cubit/login_states.dart';
 import 'package:e_commerce/ui/home_tab/cubit/home_tab_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class HomeTabViewmodel extends Cubit<HomeTabStates>{
 
   final Random random = Random();
   GetAllCategoriesUseCase getAllCategoriesUseCase ;
-  GetAllProductsUseCase getAllProductsUseCase  ;
+  GetProductsByCategoryUseCase getAllProductsUseCase  ;
 
  getAllCategories() async{
    emit(CategoriesLoadingState());

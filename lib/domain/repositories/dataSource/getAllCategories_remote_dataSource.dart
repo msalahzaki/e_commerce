@@ -6,4 +6,5 @@ import 'package:e_commerce/domain/entities/AllCategoriesEntity.dart';
 abstract class GetAllCategoriesRemoteDatasource {
   Future<Either<Failures,AllCategoriesEntity>> getAllCategories ();
 
+
 }

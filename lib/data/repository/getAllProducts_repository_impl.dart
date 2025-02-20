@@ -24,5 +24,10 @@ GetAllProductsRepositoryImpl(this.getAllProductRemoteDatasource);
     return getAllProductRemoteDatasource.getAllProductByCategory(categoryID);
   }
 
+  @override
+  Future<Either<Failures, GetAllProductsEntity>> getAllProduct() {
+    return getAllProductRemoteDatasource.getAllProduct();
+  }
+
 
 }
