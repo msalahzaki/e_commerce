@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce/api/api_manger.dart';
 import 'package:e_commerce/api/end_points.dart';
 import 'package:e_commerce/core/failures.dart';
+import 'package:e_commerce/core/shared_preference_utils.dart';
 import 'package:e_commerce/data/model/LoginResponse.dart';
 import 'package:e_commerce/data/model/RegisterDataModel.dart';
 import 'package:e_commerce/domain/entities/LoginEntity.dart';
@@ -66,17 +67,17 @@ class AuthRemoteDatasourceImpl extends AuthRemoteDatasource {
     });
 print(response!.data);
     LoginResponse loginResponse =
-    LoginResponse.fromJson(response!.data);
+    LoginResponse.fromJson(response.data);
 
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
+       SharedPreferenceUtils.saveData(key: 'token', value: loginResponse.token);
     return Right(loginResponse);
     } else {
     return Left(ServerError(errorMessage: loginResponse.message!));
     }
     } else {
     return Left(NetworkError(
-    errorMessage: 'No Internet Connection,Please check'
-    'internet.'));
+    errorMessage: 'No Internet Connection,Please check internet.'));
     }
     } catch (e) {
     return Left(Failures(errorMessage: e.toString()));

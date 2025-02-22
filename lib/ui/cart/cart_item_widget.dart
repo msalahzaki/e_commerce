@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/utils/app_color.dart';
 import 'package:e_commerce/core/utils/app_styles.dart';
+import 'package:e_commerce/domain/entities/GetCardResponseEntity.dart';
+import 'package:e_commerce/ui/cart/cubit/cart_viewModel.dart';
+import 'package:e_commerce/ui/cart/cubit/get_card_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartItemWidget extends StatelessWidget {
-  const CartItemWidget({super.key});
-
+  const CartItemWidget(this.product, {super.key});
+  final CartProductsEntity? product;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +35,7 @@ class CartItemWidget extends StatelessWidget {
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl:
-                "https://ecommerce.routemisr.com/Route-Academy-products/1680403397402-cover.jpeg",
+                product?.product?.imageCover ??"",
                 placeholder: (context, url) => Center(
                   child: CircularProgressIndicator(
                     color: AppColor.darkGrey,
@@ -50,12 +54,12 @@ class CartItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Product Name", style: AppStyles.bold16primary),
+                Text( product?.product?.title ??"", style: AppStyles.bold16primary),
                 SizedBox(height: 8.h),
-                Text("Description goes here...",
+                Text( product?.product?.description ??"",overflow: TextOverflow.ellipsis,
                     style: AppStyles.normal14primary),
                 SizedBox(height: 8.h),
-                Text("EG 3.5000 ",
+                Text("EG ${ product?.price ??""} ",
                     style: AppStyles.bold16primary.copyWith(
                         color: AppColor.primary)),
               ],
@@ -73,9 +77,24 @@ class CartItemWidget extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      IconButton(onPressed: (){}, icon: Image.asset("assets/icons/icon_decrement.png")),
-                      Text("1",style: AppStyles.bold20white,),
-                      IconButton(onPressed: (){}, icon: Image.asset("assets/icons/icon_increment.png"))
+                      IconButton(onPressed: (){
+
+                        int newcount = product!.count!.toInt() -1  ;
+                        BlocProvider.of<CartViewModel>(context).updateProductCount(productID: product?.product?.id ??"", newCount: "$newcount");
+
+
+                      }, icon: Image.asset("assets/icons/icon_decrement.png")),
+                      BlocProvider.of<CartViewModel>(context).state is UpdateProductCountState  && BlocProvider.of<CartViewModel>(context).productid == product!.product!.id
+                          ?
+                        SizedBox(height: 15.h,width: 10.w,
+                            child: CircularProgressIndicator(color: AppColor.white,)):
+                      Text("${product?.count ?? 0}",style: AppStyles.bold20white,),
+
+
+                      IconButton(onPressed: (){
+                        int newcount = product!.count!.toInt() +1  ;
+                        BlocProvider.of<CartViewModel>(context).updateProductCount(productID: product?.product?.id ??"", newCount: "$newcount");
+                      }, icon: Image.asset("assets/icons/icon_increment.png"))
                     ],
                   )
               ),

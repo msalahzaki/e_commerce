@@ -35,10 +35,25 @@ class ApiManger {
       );
 
       return response;
-    } catch (e) {
-      print('Error: \$e');
+    }
+    catch (e) {
+      print('Error: ${e.toString()}');
       return null;
     }
+  }
+  Future<Response> deleteData(String endPoint, {Map<String, dynamic>? headers, Map<String, dynamic>? body}) {
+    return dio.delete(
+      ApiConst.baseAuthURL + endPoint,
+      data: body,
+      options: Options(headers: headers, validateStatus: (status) => true),
+    );
+  }
+  Future<Response> updateData(String endPoint,{Map<String, dynamic>? headers, Map<String, dynamic>? body}) {
+    return dio.put(
+      ApiConst.baseAuthURL + endPoint,
+      data: body,
+      options: Options(headers: headers, validateStatus: (status) => true),
+    );
   }
 }
 
