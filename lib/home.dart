@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
   List<Widget> tabs = [
      HomeTab(),
      CategoriesTab(),
-    const FavoriteTab(),
+     FavoriteTab(),
     const ProfileTab(),
   ];
   @override

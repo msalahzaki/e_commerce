@@ -6,6 +6,7 @@ import 'package:e_commerce/core/utils/app_styles.dart';
 import 'package:e_commerce/ui/cart/cart_item_widget.dart';
 import 'package:e_commerce/ui/cart/cubit/cart_viewModel.dart';
 import 'package:e_commerce/ui/cart/cubit/get_card_states.dart';
+import 'package:e_commerce/ui/home_tab/widget/cart_item_count_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,8 +25,20 @@ final CartViewModel viewModel = getIt<CartViewModel>();
         ),
         actions: [
           IconButton(onPressed: () {}, icon: Image.asset(AppAssets.searchIcon)),
-          IconButton(onPressed: () {}, icon: Image.asset(AppAssets.iconCart)),
-        ],
+    BlocBuilder<CartItemCountCubit, int>( builder: (context, cartCount) {
+    return IconButton(
+    onPressed: () {
+    Navigator.of(context).push(
+    MaterialPageRoute(builder: (context) => CartDetails()),
+    );
+    },
+    icon: Badge(
+    label: Text(cartCount.toString()), // Dynamic count
+    child: Image.asset(AppAssets.shoppingCart),
+    ),
+    );
+    },
+    ),]
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -45,6 +58,7 @@ final CartViewModel viewModel = getIt<CartViewModel>();
                   child: Text(state.errorMessage, style: AppStyles.bold20primary),
                 );
               } else {
+                BlocProvider.of<CartItemCountCubit>(context).updateCartCount(viewModel.itemInCard);
                 return Column(
                   children: [
                     Expanded(

@@ -18,10 +18,12 @@ import '../../data/data_sources/GetAllCategories_remote_dataSource_impl.dart'
     as _i559;
 import '../../data/data_sources/GetAllProducts_remote_dataSource_impl.dart'
     as _i651;
+import '../../data/data_sources/wishList_dataSource_impl.dart' as _i659;
 import '../../data/repository/auth_repository_impl.dart' as _i581;
 import '../../data/repository/cart_repository_impl.dart' as _i942;
 import '../../data/repository/getAllCategories_repository_impl.dart' as _i338;
 import '../../data/repository/getAllProducts_repository_impl.dart' as _i634;
+import '../../data/repository/wishList_repository_impl.dart' as _i65;
 import '../../domain/repositories/dataSource/auth_remote_dataSource.dart'
     as _i102;
 import '../../domain/repositories/dataSource/cart_dataSource.dart' as _i192;
@@ -29,17 +31,20 @@ import '../../domain/repositories/dataSource/getAllCategories_remote_dataSource.
     as _i921;
 import '../../domain/repositories/dataSource/getAllProduct_remote_dataSource.dart'
     as _i989;
+import '../../domain/repositories/dataSource/wishList_dataSource.dart' as _i982;
 import '../../domain/repositories/repository/auth_repository.dart' as _i648;
 import '../../domain/repositories/repository/cart_repository.dart' as _i919;
 import '../../domain/repositories/repository/getAllCategories_repository.dart'
     as _i732;
 import '../../domain/repositories/repository/getAllProduct_repository.dart'
     as _i135;
+import '../../domain/repositories/repository/wishList_repository.dart' as _i151;
 import '../../domain/usecases/addToCart_useCase.dart' as _i795;
 import '../../domain/usecases/getAllCategories_useCase.dart' as _i470;
 import '../../domain/usecases/getAllProducts_useCase.dart' as _i507;
 import '../../domain/usecases/getCart_useCase.dart' as _i653;
 import '../../domain/usecases/getProductsByCategory_useCase.dart' as _i813;
+import '../../domain/usecases/getWishList_useCase.dart' as _i223;
 import '../../domain/usecases/login_useCase.dart' as _i839;
 import '../../domain/usecases/register_useCase.dart' as _i216;
 import '../../domain/usecases/updateCartProductCount_useCase.dart' as _i911;
@@ -47,6 +52,7 @@ import '../../ui/auth/login/cubit/login_viewModel.dart' as _i999;
 import '../../ui/auth/register/cubit/register_viewModel.dart' as _i1056;
 import '../../ui/cart/cubit/cart_viewModel.dart' as _i606;
 import '../../ui/explorer_tab/cubit/explorer_tab_viewModel.dart' as _i693;
+import '../../ui/favorite_tab/cubit/wishlist_viewmodel.dart' as _i171;
 import '../../ui/home_tab/cubit/home_tab_viewModel.dart' as _i53;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -63,6 +69,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i254.ApiManger>(() => _i254.ApiManger());
     gh.factory<_i989.GetAllProductRemoteDatasource>(
         () => _i651.GetAllProductsRemoteDatasourceImpl(gh<_i254.ApiManger>()));
+    gh.factory<_i982.WishListDataSource>(
+        () => _i659.WishListDataSourceImpl(gh<_i254.ApiManger>()));
     gh.factory<_i921.GetAllCategoriesRemoteDatasource>(() =>
         _i559.GetAllCategoriesRemoteDatasourceImpl(gh<_i254.ApiManger>()));
     gh.factory<_i507.GetAllProductsUseCase>(() =>
@@ -86,6 +94,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i839.LoginUseCase(gh<_i648.AuthRepository>()));
     gh.factory<_i216.RegisterUseCase>(
         () => _i216.RegisterUseCase(gh<_i648.AuthRepository>()));
+    gh.factory<_i151.WishlistRepository>(
+        () => _i65.WishlistRepositoryImpl(gh<_i982.WishListDataSource>()));
     gh.factory<_i470.GetAllCategoriesUseCase>(() =>
         _i470.GetAllCategoriesUseCase(gh<_i732.GetAllCategoriesRepository>()));
     gh.factory<_i999.LoginViewmodel>(
@@ -98,6 +108,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i470.GetAllCategoriesUseCase>(),
           gh<_i813.GetProductsByCategoryUseCase>(),
         ));
+    gh.factory<_i223.GetWishListUseCase>(
+        () => _i223.GetWishListUseCase(gh<_i151.WishlistRepository>()));
+    gh.factory<_i171.WishlistViewmodel>(
+        () => _i171.WishlistViewmodel(gh<_i223.GetWishListUseCase>()));
     gh.factory<_i795.AddToCartUseCase>(
         () => _i795.AddToCartUseCase(gh<_i919.CartRepository>()));
     gh.factory<_i653.GetCartUseCase>(

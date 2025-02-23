@@ -11,6 +11,7 @@ class CartViewModel extends Cubit<GetCardStates>{
 GetCartUseCase getCartUseCase ;
 UpdateCartProductCountUseCase updateCartProductCountUseCase;
 GetCardResponseEntity? cartDetails ;
+int itemInCard = 0 ;
 late String productid ;
   Future<bool> getCart( )async{
     emit(GetCardLoadingState());
@@ -19,6 +20,7 @@ late String productid ;
       emit(GetCardErrorState(error.errorMessage));
     }, (cartResponse){
       cartDetails = cartResponse;
+      itemInCard =cartDetails?.numOfCartItems?.toInt() ?? 0 ;
       emit(GetCardSuccessState(cartResponse));
       return true;
     });
@@ -32,6 +34,7 @@ late String productid ;
       emit(GetCardErrorState(error.errorMessage));
     }, (cartResponse){
       cartDetails = cartResponse;
+      itemInCard =cartDetails?.numOfCartItems?.toInt() ?? 0 ;
       emit(GetCardSuccessState(cartResponse));
       return true;
     });

@@ -28,7 +28,7 @@ class SearchCartWidget extends StatelessWidget {
             ),
             SizedBox(width: 15.w),
 
-            // BlocBuilder to listen to CartCubit changes
+
             BlocBuilder<CartItemCountCubit, int>(
               builder: (context, cartCount) {
                 return IconButton(

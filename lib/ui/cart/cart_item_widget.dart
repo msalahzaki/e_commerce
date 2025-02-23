@@ -49,7 +49,6 @@ class CartItemWidget extends StatelessWidget {
 
           SizedBox(width: 12.w),
 
-
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +68,10 @@ class CartItemWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.delete_outline,color: AppColor.primary,)),
+              IconButton(onPressed: (){
+                BlocProvider.of<CartViewModel>(context).updateProductCount(productID: product?.product?.id ??"", newCount: "0");
+
+              }, icon: Icon(Icons.delete_outline,color: AppColor.primary,)),
               SizedBox(height: 8.h),
               Container(padding: const EdgeInsets.symmetric(horizontal: 6),
                   decoration: BoxDecoration(color: AppColor.primary,
