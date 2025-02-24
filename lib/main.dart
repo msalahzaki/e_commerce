@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'ui/favorite_tab/cubit/wishlist_viewmodel.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferenceUtils.init();
@@ -17,7 +19,8 @@ void main() async{
   Bloc.observer = MyBlocObserver();
   runApp(MultiBlocProvider(
             providers: [
-  BlocProvider<CartItemCountCubit>(create: (BuildContext context) => CartItemCountCubit())
+  BlocProvider<CartItemCountCubit>(create: (BuildContext context) => CartItemCountCubit()),
+  BlocProvider<WishlistViewmodel>(create: (BuildContext context) => getIt<WishlistViewmodel>())
 
       ],
       child: const MyApp()));

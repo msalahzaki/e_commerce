@@ -3,6 +3,9 @@ import 'package:e_commerce/domain/entities/GetWishListResponseEntity.dart';
 class WishlistStates {}
 
 class GetWishlistLoadingState extends WishlistStates{}
+class AddToListState extends WishlistStates{}
+class RemoveFromListState extends WishlistStates{}
+
 
 class GetWishlistErrorState extends WishlistStates{
   String errorMessage;

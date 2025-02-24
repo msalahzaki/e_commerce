@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/failures.dart';
-import 'package:e_commerce/domain/entities/AddToCartResponseEntity.dart';
-import 'package:e_commerce/domain/entities/GetCardResponseEntity.dart';
+import 'package:e_commerce/domain/entities/AddRemoveWishListResponseEntity.dart';
+
 import 'package:e_commerce/domain/entities/GetWishListResponseEntity.dart';
-import 'package:e_commerce/domain/repositories/dataSource/cart_dataSource.dart';
+
 import 'package:e_commerce/domain/repositories/dataSource/wishList_dataSource.dart';
-import 'package:e_commerce/domain/repositories/repository/cart_repository.dart';
+
 import 'package:e_commerce/domain/repositories/repository/wishList_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,6 +18,16 @@ class WishlistRepositoryImpl extends WishlistRepository{
   @override
   Future<Either<Failures, GetWishListResponseEntity>> getWishList() {
     return wishListDataSource.getWishList();
+  }
+
+  @override
+  Future<Either<Failures, AddRemoveWishListResponseEntity>> addTOWishList(String productID) {
+    return wishListDataSource.addTOWishList(productID);
+  }
+
+  @override
+  Future<Either<Failures, AddRemoveWishListResponseEntity>> removeFromWishList(String productID) {
+   return wishListDataSource.removeFromWishList(productID);
   }
 
 

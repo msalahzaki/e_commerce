@@ -17,8 +17,6 @@ class GetWishListResponseEntity {
   List<WishListDataEntity>? products;
   String? message ;
 
-
-
 }
 
 class WishListDataEntity {

@@ -5,7 +5,9 @@ import 'package:e_commerce/core/utils/app_color.dart';
 import 'package:e_commerce/core/utils/app_styles.dart';
 import 'package:e_commerce/domain/entities/GetCardResponseEntity.dart';
 import 'package:e_commerce/domain/entities/GetWishListResponseEntity.dart';
+import 'package:e_commerce/ui/favorite_tab/cubit/wishlist_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WishlistItemWidget extends StatelessWidget {
@@ -14,6 +16,7 @@ class WishlistItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+bool isFavor = BlocProvider.of<WishlistViewmodel>(context).isInWishList(product?.id ?? "");
     return Container(
       padding: EdgeInsets.only(right: 3),
       decoration: BoxDecoration(
@@ -67,7 +70,10 @@ class WishlistItemWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
 
-                      child: Image.asset(AppAssets.iconHeart),
+                      child: IconButton(onPressed: (){
+                        isFavor ?BlocProvider.of<WishlistViewmodel>(context).removeFromWishList(product?.id ?? ""):
+                        BlocProvider.of<WishlistViewmodel>(context).addToWishList(product?.id ?? "");
+                      },icon: Image.asset(isFavor?AppAssets.iconClickedHeart: AppAssets.iconHeart))  ,
                     ),
                   ],
                 ),
